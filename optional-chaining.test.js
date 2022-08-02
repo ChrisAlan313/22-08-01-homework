@@ -1,13 +1,32 @@
-const not_optional_chain = require('./optional-chaining');
-const optional_chain = require('./optional-chaining');
+const notOptionalChain = require('./optional-chaining');
 
-const test_object = {
-haver: 'Dave',
-thing: {
-  name: 'Something'
+const test_object1 = {
+  haver: 'Dave',
+  thing: {
+    name: 'Something'
   }
 };
 
-test('not_optional_chain', () => {
-  expect(not_optional_chain(test_object, 'Something')).toBe(true);
+const test_object2 = {
+  wanter: 'Steve',
+  thing: {
+    name: 'Nothing'
+  }
+};
+
+const test_object3 = {
+  gone: 'Sad'
+};
+
+test('notOptionalChain throws error for missing value', () => {
+  expect(notOptionalChain(test_object1, 'Something')).toBe(true);
+  expect(notOptionalChain(test_object2, 'Something')).toBe(false);
+
+  // This has to be wrapped in a function to prevent the error from blowing up
+  // the test suite.
+  function callFailingNotOptionalChain() {
+    notOptionalChain(test_object3, 'Something');
+  }
+
+  expect(callFailingNotOptionalChain).toThrow("Cannot read property 'name' of undefined");
 });

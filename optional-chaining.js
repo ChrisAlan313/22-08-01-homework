@@ -1,8 +1,8 @@
-const not_optional_chain = function(test_object: test_object) {
 
+const notOptionalChain = (test_object, thing_name) => {
+  return test_object.thing.name === thing_name;
 }
 
 const optional_chain = function() {}
 
-module.exports = not_optional_chain
-module.exports = optional_chain
+module.exports = notOptionalChain;
