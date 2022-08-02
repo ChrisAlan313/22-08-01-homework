@@ -28,5 +28,5 @@ test('notOptionalChain throws error for missing value', () => {
     notOptionalChain(test_object3, 'Something');
   }
 
-  expect(callFailingNotOptionalChain).toThrow("Cannot read property 'name' of undefined");
+ expect(callFailingNotOptionalChain).toThrow(TypeError);
 });
