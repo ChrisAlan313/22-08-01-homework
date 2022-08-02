@@ -6,6 +6,7 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: List files in the repository
-        run: |
-          npm
+      - name: Install jest
+        run: npm install --save-dev jest
+      - name: Run tests
+        run: npm test
