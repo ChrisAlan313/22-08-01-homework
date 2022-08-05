@@ -1,6 +1,6 @@
 const challenges = require('./challenges');
 const numberFilter = challenges.numberFilter;
-const indexedNumberFilter = challenges.indexedNumberFilter;
+const indexAddedNumberFilter = challenges.indexAddedNumberFilter;
 // const indexedGreaterThanOneNumberFilter = challenges.indexedGreaterThanOneNumberFilter;
 
 const testOne = {
@@ -12,6 +12,24 @@ const testTwo = {
   numberFilterExpected: [984894849, 0.75]
 };
 
+const indexAddedTestOne = {
+  test: ['a', 2 , 'c', 4, 42, "er"],
+  indexExpected: [2, 5, 44]
+};
+const indexAddedTestTwo = {
+  test: ['a', challenges, 984894849, 3/4],
+  indexExpected: [984894849, 1.75]
+};
+
+// const indexedTestOne = {
+//   test: ['a', 2 , 'c', 4, 42, "er"],
+//   indexExpected: [2, 4, 42]
+// };
+// const indexedTestTwo = {
+//   test: ['a', challenges, 984894849, 3/4],
+//   indexExpected: [984894849, 0.75]
+// };
+
 test('numberFilter removes non-number items from array', () => {
   expect(
     numberFilter(...testOne.test)
@@ -21,26 +39,23 @@ test('numberFilter removes non-number items from array', () => {
   ).toStrictEqual(testTwo.numberFilterExpected);
 });
 
-test('indexedNumberFilter adds index number', () => {
-  const indexedTestOne = {
-    test: ['a', 2 , 'c', 4, 42, "er"],
-    indexExpected: [[0, 2], [1, 4], [2, 42]]
-  };
-  const indexedTestTwo = {
-    test: ['a', challenges, 984894849, 3/4],
-    indexExpected: [[0, 984894849], [1, 0.75]]
-  };
-
+test('indexAddedNumberFilter adds index number', () => {
   expect(
-    indexedNumberFilter(...indexedTestOne.test)
+    indexAddedNumberFilter(...indexAddedTestOne.test)
   ).toStrictEqual(
-    indexedTestOne.indexExpected
+    indexAddedTestOne.indexExpected
   );
   expect(
-    indexedNumberFilter(...indexedTestTwo.test)
+    indexAddedNumberFilter(...indexAddedTestTwo.test)
   ).toStrictEqual(
-    indexedTestTwo.indexExpected
+    indexAddedTestTwo.indexExpected
   );
 });
 
-// test('indexedGreaterThanOneNumberFilter remov')
+// test('> 1 filter removes numbers 1 or less', () => {
+//   expect(
+//     greaterThanOneNumberFilter(...indexedTestOne.test)
+//   ).toStrictEqual(
+//     indexedTestOne.indexExpected
+//   );
+// });

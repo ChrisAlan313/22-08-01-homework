@@ -4,12 +4,10 @@ const numberFilter = (...theArgs) => {
   return theArgs.filter(arg => Number.isFinite(arg));
 };
 
-const indexedNumberFilter = (...theArgs) => {
+const indexAddedNumberFilter = (...theArgs) => {
   return numberFilter(...theArgs).map(
-    (element, index) => {
-      return [index, element];
-    }
+    (element, index) => { return element + index; }
   );
 };
 
-module.exports = { numberFilter, indexedNumberFilter } ;
+module.exports = { numberFilter, indexAddedNumberFilter } ;
